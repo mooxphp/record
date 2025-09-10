@@ -150,7 +150,10 @@ class RecordResource extends BaseRecordResource
             ->defaultSort('title', 'desc')
             ->recordActions([...static::getTableActions()])
             ->toolbarActions([...static::getBulkActions()])
-            ->filters([]);
+            ->filters([
+                ...static::getTaxonomyFilters(),
+            ])->deferFilters(false)
+            ->persistFiltersInSession();
     }
 
     public static function getPages(): array
